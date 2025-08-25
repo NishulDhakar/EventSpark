@@ -1,0 +1,995 @@
+
+smart-event-management-frontend/
+├── public/
+│   ├── index.html
+│   ├── favicon.ico
+│   ├── logo192.png
+│   ├── logo512.png
+│   ├── manifest.json
+│   ├── robots.txt
+│   └── sw.js                          # Service Worker for offline support
+│
+├── src/
+│   ├── components/                     # Reusable UI Components
+│   │   ├── common/                     # Generic reusable components
+│   │   │   ├── Button/
+│   │   │   │   ├── Button.tsx
+│   │   │   │   ├── Button.variants.ts  # Tailwind variant configurations
+│   │   │   │   └── index.ts
+│   │   │   ├── Modal/
+│   │   │   │   ├── Modal.tsx
+│   │   │   │   ├── ModalOverlay.tsx
+│   │   │   │   ├── ModalContent.tsx
+│   │   │   │   └── index.ts
+│   │   │   ├── Input/
+│   │   │   │   ├── Input.tsx
+│   │   │   │   ├── TextArea.tsx
+│   │   │   │   ├── Select.tsx
+│   │   │   │   ├── FileUpload.tsx
+│   │   │   │   ├── InputField.tsx       # Wrapper with label and error
+│   │   │   │   └── index.ts
+│   │   │   ├── Card/
+│   │   │   │   ├── Card.tsx
+│   │   │   │   ├── CardHeader.tsx
+│   │   │   │   ├── CardContent.tsx
+│   │   │   │   ├── CardFooter.tsx
+│   │   │   │   └── index.ts
+│   │   │   ├── Loading/
+│   │   │   │   ├── Spinner.tsx
+│   │   │   │   ├── LoadingPage.tsx
+│   │   │   │   ├── Skeleton.tsx         # Skeleton loading components
+│   │   │   │   ├── LoadingDots.tsx
+│   │   │   │   └── index.ts
+│   │   │   ├── Pagination/
+│   │   │   │   ├── Pagination.tsx
+│   │   │   │   ├── PaginationButton.tsx
+│   │   │   │   └── index.ts
+│   │   │   ├── Toast/
+│   │   │   │   ├── Toast.tsx
+│   │   │   │   ├── ToastContainer.tsx
+│   │   │   │   ├── ToastProvider.tsx
+│   │   │   │   └── index.ts
+│   │   │   ├── SearchBar/
+│   │   │   │   ├── SearchBar.tsx
+│   │   │   │   ├── SearchSuggestions.tsx
+│   │   │   │   └── index.ts
+│   │   │   ├── Filter/
+│   │   │   │   ├── FilterDropdown.tsx
+│   │   │   │   ├── DateRangePicker.tsx
+│   │   │   │   ├── PriceRangeSlider.tsx
+│   │   │   │   ├── MultiSelect.tsx
+│   │   │   │   └── index.ts
+│   │   │   ├── Badge/
+│   │   │   │   ├── Badge.tsx
+│   │   │   │   ├── StatusBadge.tsx
+│   │   │   │   └── index.ts
+│   │   │   ├── Avatar/
+│   │   │   │   ├── Avatar.tsx
+│   │   │   │   ├── AvatarGroup.tsx
+│   │   │   │   └── index.ts
+│   │   │   ├── Dropdown/
+│   │   │   │   ├── Dropdown.tsx
+│   │   │   │   ├── DropdownItem.tsx
+│   │   │   │   ├── DropdownDivider.tsx
+│   │   │   │   └── index.ts
+│   │   │   ├── Tooltip/
+│   │   │   │   ├── Tooltip.tsx
+│   │   │   │   └── index.ts
+│   │   │   ├── ErrorBoundary/
+│   │   │   │   ├── ErrorBoundary.tsx
+│   │   │   │   ├── ErrorFallback.tsx
+│   │   │   │   └── index.ts
+│   │   │   └── index.ts
+│   │   │
+│   │   ├── layout/                     # Layout components
+│   │   │   ├── Header/
+│   │   │   │   ├── Header.tsx
+│   │   │   │   ├── Navbar.tsx
+│   │   │   │   ├── UserDropdown.tsx
+│   │   │   │   ├── MobileMenu.tsx
+│   │   │   │   ├── ThemeToggle.tsx      # Dark/Light mode toggle
+│   │   │   │   └── index.ts
+│   │   │   ├── Footer/
+│   │   │   │   ├── Footer.tsx
+│   │   │   │   ├── FooterLinks.tsx
+│   │   │   │   ├── FooterSocial.tsx
+│   │   │   │   └── index.ts
+│   │   │   ├── Sidebar/
+│   │   │   │   ├── Sidebar.tsx
+│   │   │   │   ├── SidebarItem.tsx
+│   │   │   │   ├── SidebarGroup.tsx
+│   │   │   │   └── index.ts
+│   │   │   ├── Layout/
+│   │   │   │   ├── MainLayout.tsx
+│   │   │   │   ├── DashboardLayout.tsx
+│   │   │   │   ├── AuthLayout.tsx
+│   │   │   │   ├── AdminLayout.tsx
+│   │   │   │   └── index.ts
+│   │   │   ├── Breadcrumb/
+│   │   │   │   ├── Breadcrumb.tsx
+│   │   │   │   ├── BreadcrumbItem.tsx
+│   │   │   │   └── index.ts
+│   │   │   └── index.ts
+│   │   │
+│   │   ├── auth/                       # Authentication components
+│   │   │   ├── LoginForm/
+│   │   │   │   ├── LoginForm.tsx
+│   │   │   │   ├── SocialLogin.tsx
+│   │   │   │   └── index.ts
+│   │   │   ├── RegisterForm/
+│   │   │   │   ├── RegisterForm.tsx
+│   │   │   │   ├── RoleSelection.tsx
+│   │   │   │   ├── StepIndicator.tsx
+│   │   │   │   └── index.ts
+│   │   │   ├── ProtectedRoute/
+│   │   │   │   ├── ProtectedRoute.tsx
+│   │   │   │   ├── RoleBasedRoute.tsx
+│   │   │   │   └── index.ts
+│   │   │   ├── ForgotPassword/
+│   │   │   │   ├── ForgotPasswordForm.tsx
+│   │   │   │   ├── ResetPasswordForm.tsx
+│   │   │   │   └── index.ts
+│   │   │   └── index.ts
+│   │   │
+│   │   ├── events/                     # Event-related components
+│   │   │   ├── EventCard/
+│   │   │   │   ├── EventCard.tsx
+│   │   │   │   ├── EventCardSkeleton.tsx
+│   │   │   │   ├── EventCardCompact.tsx
+│   │   │   │   ├── EventCardDetailed.tsx
+│   │   │   │   └── index.ts
+│   │   │   ├── EventList/
+│   │   │   │   ├── EventList.tsx
+│   │   │   │   ├── EventGrid.tsx
+│   │   │   │   ├── EventListView.tsx
+│   │   │   │   ├── ViewToggle.tsx
+│   │   │   │   └── index.ts
+│   │   │   ├── EventDetail/
+│   │   │   │   ├── EventHeader.tsx
+│   │   │   │   ├── EventInfo.tsx
+│   │   │   │   ├── EventDescription.tsx
+│   │   │   │   ├── VenueInfo.tsx
+│   │   │   │   ├── OrganizerInfo.tsx
+│   │   │   │   ├── RegistrationSection.tsx
+│   │   │   │   ├── EventGallery.tsx
+│   │   │   │   ├── RelatedEvents.tsx
+│   │   │   │   └── index.ts
+│   │   │   ├── EventForm/
+│   │   │   │   ├── EventForm.tsx
+│   │   │   │   ├── BasicInfoStep.tsx
+│   │   │   │   ├── DetailsStep.tsx
+│   │   │   │   ├── MediaStep.tsx
+│   │   │   │   ├── ReviewStep.tsx
+│   │   │   │   ├── FormNavigation.tsx
+│   │   │   │   └── index.ts
+│   │   │   ├── EventFilters/
+│   │   │   │   ├── FilterSidebar.tsx
+│   │   │   │   ├── CategoryFilter.tsx
+│   │   │   │   ├── DateFilter.tsx
+│   │   │   │   ├── LocationFilter.tsx
+│   │   │   │   ├── PriceFilter.tsx
+│   │   │   │   ├── SortOptions.tsx
+│   │   │   │   ├── FilterChips.tsx      # Active filter display
+│   │   │   │   └── index.ts
+│   │   │   ├── EventStatus/
+│   │   │   │   ├── EventStatus.tsx
+│   │   │   │   ├── AvailabilityBadge.tsx
+│   │   │   │   └── index.ts
+│   │   │   └── index.ts
+│   │   │
+│   │   ├── tickets/                    # Ticket-related components
+│   │   │   ├── TicketCard/
+│   │   │   │   ├── TicketCard.tsx
+│   │   │   │   ├── TicketCardMini.tsx
+│   │   │   │   └── index.ts
+│   │   │   ├── TicketList/
+│   │   │   │   ├── TicketList.tsx
+│   │   │   │   ├── TicketGrid.tsx
+│   │   │   │   └── index.ts
+│   │   │   ├── TicketPDF/
+│   │   │   │   ├── TicketTemplate.tsx
+│   │   │   │   ├── PDFGenerator.tsx
+│   │   │   │   ├── TicketPreview.tsx
+│   │   │   │   └── index.ts
+│   │   │   ├── QRCode/
+│   │   │   │   ├── QRCodeGenerator.tsx
+│   │   │   │   ├── QRCodeDisplay.tsx
+│   │   │   │   ├── QRCodeScanner.tsx
+│   │   │   │   └── index.ts
+│   │   │   ├── Registration/
+│   │   │   │   ├── RegistrationForm.tsx
+│   │   │   │   ├── RegistrationWizard.tsx
+│   │   │   │   ├── RegistrationConfirmation.tsx
+│   │   │   │   ├── AttendeeInfo.tsx
+│   │   │   │   └── index.ts
+│   │   │   └── index.ts
+│   │   │
+│   │   ├── payment/                    # Payment-related components
+│   │   │   ├── PaymentForm/
+│   │   │   │   ├── PaymentForm.tsx
+│   │   │   │   ├── PaymentMethods.tsx
+│   │   │   │   ├── PaymentSummary.tsx
+│   │   │   │   └── index.ts
+│   │   │   ├── PaymentStatus/
+│   │   │   │   ├── PaymentSuccess.tsx
+│   │   │   │   ├── PaymentFailure.tsx
+│   │   │   │   ├── PaymentPending.tsx
+│   │   │   │   └── index.ts
+│   │   │   ├── MockPayment/
+│   │   │   │   ├── MockPaymentGateway.tsx
+│   │   │   │   ├── PaymentSimulator.tsx
+│   │   │   │   └── index.ts
+│   │   │   └── index.ts
+│   │   │
+│   │   ├── dashboard/                  # Dashboard components
+│   │   │   ├── common/
+│   │   │   │   ├── StatCard/
+│   │   │   │   │   ├── StatCard.tsx
+│   │   │   │   │   ├── StatCardGroup.tsx
+│   │   │   │   │   ├── TrendingStatCard.tsx
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── Chart/
+│   │   │   │   │   ├── LineChart.tsx
+│   │   │   │   │   ├── BarChart.tsx
+│   │   │   │   │   ├── PieChart.tsx
+│   │   │   │   │   ├── DonutChart.tsx
+│   │   │   │   │   ├── ChartContainer.tsx
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── DataTable/
+│   │   │   │   │   ├── DataTable.tsx
+│   │   │   │   │   ├── TableRow.tsx
+│   │   │   │   │   ├── TableHeader.tsx
+│   │   │   │   │   ├── TableActions.tsx
+│   │   │   │   │   ├── TableFilters.tsx
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── MetricCard/
+│   │   │   │   │   ├── MetricCard.tsx
+│   │   │   │   │   ├── MetricTrend.tsx
+│   │   │   │   │   └── index.ts
+│   │   │   │   └── index.ts
+│   │   │   ├── attendee/
+│   │   │   │   ├── AttendeeDashboard.tsx
+│   │   │   │   ├── UpcomingEvents.tsx
+│   │   │   │   ├── RecentRegistrations.tsx
+│   │   │   │   ├── EventRecommendations.tsx
+│   │   │   │   └── index.ts
+│   │   │   ├── organizer/
+│   │   │   │   ├── OrganizerDashboard.tsx
+│   │   │   │   ├── EventsOverview.tsx
+│   │   │   │   ├── RecentRegistrations.tsx
+│   │   │   │   ├── EventAnalytics.tsx
+│   │   │   │   ├── AttendeesList.tsx
+│   │   │   │   ├── RevenueCard.tsx
+│   │   │   │   └── index.ts
+│   │   │   ├── admin/
+│   │   │   │   ├── AdminDashboard.tsx
+│   │   │   │   ├── SystemMetrics.tsx
+│   │   │   │   ├── UserManagement.tsx
+│   │   │   │   ├── EventManagement.tsx
+│   │   │   │   ├── PlatformAnalytics.tsx
+│   │   │   │   ├── SystemHealth.tsx
+│   │   │   │   └── index.ts
+│   │   │   └── index.ts
+│   │   │
+│   │   ├── profile/                    # Profile components
+│   │   │   ├── ProfileForm/
+│   │   │   │   ├── ProfileForm.tsx
+│   │   │   │   ├── ProfileImageUpload.tsx
+│   │   │   │   └── index.ts
+│   │   │   ├── ProfileInfo/
+│   │   │   │   ├── ProfileInfo.tsx
+│   │   │   │   ├── ProfileAvatar.tsx
+│   │   │   │   ├── ProfileStats.tsx
+│   │   │   │   └── index.ts
+│   │   │   ├── AccountSettings/
+│   │   │   │   ├── PasswordChange.tsx
+│   │   │   │   ├── NotificationSettings.tsx
+│   │   │   │   ├── PrivacySettings.tsx
+│   │   │   │   ├── AccountDeletion.tsx
+│   │   │   │   └── index.ts
+│   │   │   └── index.ts
+│   │   │
+│   │   ├── notifications/              # Notification components
+│   │   │   ├── NotificationCenter/
+│   │   │   │   ├── NotificationCenter.tsx
+│   │   │   │   ├── NotificationItem.tsx
+│   │   │   │   ├── NotificationBell.tsx
+│   │   │   │   ├── NotificationList.tsx
+│   │   │   │   └── index.ts
+│   │   │   ├── RealTimeUpdates/
+│   │   │   │   ├── LiveTicketCounter.tsx
+│   │   │   │   ├── EventUpdates.tsx
+│   │   │   │   └── index.ts
+│   │   │   └── index.ts
+│   │   │
+│   │   └── index.ts                    # Export all components
+│   │
+│   ├── pages/                          # Page components
+│   │   ├── public/                     # Public pages
+│   │   │   ├── HomePage/
+│   │   │   │   ├── HomePage.tsx
+│   │   │   │   ├── HeroSection.tsx
+│   │   │   │   ├── FeaturedEvents.tsx
+│   │   │   │   ├── CategoriesSection.tsx
+│   │   │   │   ├── TestimonialsSection.tsx
+│   │   │   │   ├── CTASection.tsx
+│   │   │   │   └── index.ts
+│   │   │   ├── EventsPage/
+│   │   │   │   ├── EventsPage.tsx
+│   │   │   │   ├── EventsHeader.tsx
+│   │   │   │   ├── EventsFilters.tsx
+│   │   │   │   └── index.ts
+│   │   │   ├── EventDetailPage/
+│   │   │   │   ├── EventDetailPage.tsx
+│   │   │   │   └── index.ts
+│   │   │   ├── AboutPage/
+│   │   │   │   ├── AboutPage.tsx
+│   │   │   │   └── index.ts
+│   │   │   ├── ContactPage/
+│   │   │   │   ├── ContactPage.tsx
+│   │   │   │   ├── ContactForm.tsx
+│   │   │   │   └── index.ts
+│   │   │   └── index.ts
+│   │   │
+│   │   ├── auth/                       # Authentication pages
+│   │   │   ├── LoginPage/
+│   │   │   │   ├── LoginPage.tsx
+│   │   │   │   └── index.ts
+│   │   │   ├── RegisterPage/
+│   │   │   │   ├── RegisterPage.tsx
+│   │   │   │   └── index.ts
+│   │   │   ├── ForgotPasswordPage/
+│   │   │   │   ├── ForgotPasswordPage.tsx
+│   │   │   │   └── index.ts
+│   │   │   ├── ResetPasswordPage/
+│   │   │   │   ├── ResetPasswordPage.tsx
+│   │   │   │   └── index.ts
+│   │   │   └── index.ts
+│   │   │
+│   │   ├── attendee/                   # Attendee-specific pages
+│   │   │   ├── DashboardPage/
+│   │   │   │   ├── AttendeeDashboardPage.tsx
+│   │   │   │   └── index.ts
+│   │   │   ├── MyTicketsPage/
+│   │   │   │   ├── MyTicketsPage.tsx
+│   │   │   │   └── index.ts
+│   │   │   ├── ProfilePage/
+│   │   │   │   ├── AttendeeProfilePage.tsx
+│   │   │   │   └── index.ts
+│   │   │   └── index.ts
+│   │   │
+│   │   ├── organizer/                  # Organizer-specific pages
+│   │   │   ├── DashboardPage/
+│   │   │   │   ├── OrganizerDashboardPage.tsx
+│   │   │   │   └── index.ts
+│   │   │   ├── EventsPage/
+│   │   │   │   ├── MyEventsPage.tsx
+│   │   │   │   ├── CreateEventPage.tsx
+│   │   │   │   ├── EditEventPage.tsx
+│   │   │   │   └── index.ts
+│   │   │   ├── AnalyticsPage/
+│   │   │   │   ├── EventAnalyticsPage.tsx
+│   │   │   │   ├── OverviewAnalyticsPage.tsx
+│   │   │   │   └── index.ts
+│   │   │   ├── AttendeesPage/
+│   │   │   │   ├── EventAttendeesPage.tsx
+│   │   │   │   └── index.ts
+│   │   │   ├── ProfilePage/
+│   │   │   │   ├── OrganizerProfilePage.tsx
+│   │   │   │   └── index.ts
+│   │   │   └── index.ts
+│   │   │
+│   │   ├── admin/                      # Admin-specific pages
+│   │   │   ├── DashboardPage/
+│   │   │   │   ├── AdminDashboardPage.tsx
+│   │   │   │   └── index.ts
+│   │   │   ├── UsersPage/
+│   │   │   │   ├── UsersManagementPage.tsx
+│   │   │   │   ├── UserDetailsPage.tsx
+│   │   │   │   └── index.ts
+│   │   │   ├── EventsPage/
+│   │   │   │   ├── EventsManagementPage.tsx
+│   │   │   │   ├── EventModerationPage.tsx
+│   │   │   │   └── index.ts
+│   │   │   ├── AnalyticsPage/
+│   │   │   │   ├── PlatformAnalyticsPage.tsx
+│   │   │   │   ├── RevenueAnalyticsPage.tsx
+│   │   │   │   └── index.ts
+│   │   │   ├── SettingsPage/
+│   │   │   │   ├── SystemSettingsPage.tsx
+│   │   │   │   └── index.ts
+│   │   │   └── index.ts
+│   │   │
+│   │   ├── error/                      # Error pages
+│   │   │   ├── NotFoundPage/
+│   │   │   │   ├── NotFoundPage.tsx
+│   │   │   │   └── index.ts
+│   │   │   ├── ServerErrorPage/
+│   │   │   │   ├── ServerErrorPage.tsx
+│   │   │   │   └── index.ts
+│   │   │   ├── UnauthorizedPage/
+│   │   │   │   ├── UnauthorizedPage.tsx
+│   │   │   │   └── index.ts
+│   │   │   └── index.ts
+│   │   │
+│   │   └── index.ts                    # Export all pages
+│   │
+│   ├── hooks/                          # Custom React hooks
+│   │   ├── auth/
+│   │   │   ├── useAuth.ts
+│   │   │   ├── useLogin.ts
+│   │   │   ├── useRegister.ts
+│   │   │   ├── useLogout.ts
+│   │   │   └── index.ts
+│   │   ├── api/
+│   │   │   ├── useApi.ts
+│   │   │   ├── useApiCall.ts
+│   │   │   ├── useApiError.ts
+│   │   │   └── index.ts
+│   │   ├── events/
+│   │   │   ├── useEvents.ts
+│   │   │   ├── useEvent.ts
+│   │   │   ├── useEventRegistration.ts
+│   │   │   ├── useEventSearch.ts
+│   │   │   ├── useEventFilters.ts
+│   │   │   └── index.ts
+│   │   ├── tickets/
+│   │   │   ├── useTickets.ts
+│   │   │   ├── useTicketGeneration.ts
+│   │   │   ├── usePDFGeneration.ts
+│   │   │   └── index.ts
+│   │   ├── ui/
+│   │   │   ├── useTheme.ts             # Dark/Light mode management
+│   │   │   ├── useToast.ts
+│   │   │   ├── useModal.ts
+│   │   │   ├── useDisclosure.ts        # Modal/dropdown state management
+│   │   │   ├── useBreakpoint.ts        # Responsive breakpoints
+│   │   │   ├── useClickOutside.ts
+│   │   │   ├── useKeyPress.ts
+│   │   │   ├── useFocusTrap.ts
+│   │   │   └── index.ts
+│   │   ├── common/
+│   │   │   ├── useLocalStorage.ts
+│   │   │   ├── useDebounce.ts
+│   │   │   ├── usePagination.ts
+│   │   │   ├── useInfiniteScroll.ts
+│   │   │   ├── useImageLazyLoad.ts
+│   │   │   ├── useWebSocket.ts
+│   │   │   ├── useWindowSize.ts
+│   │   │   ├── useScrollPosition.ts
+│   │   │   └── index.ts
+│   │   ├── dashboard/
+│   │   │   ├── useDashboardData.ts
+│   │   │   ├── useAnalytics.ts
+│   │   │   ├── useChartData.ts
+│   │   │   └── index.ts
+│   │   ├── forms/
+│   │   │   ├── useForm.ts
+│   │   │   ├── useFormValidation.ts
+│   │   │   ├── useFileUpload.ts
+│   │   │   └── index.ts
+│   │   └── index.ts
+│   │
+│   ├── context/                        # React Context providers
+│   │   ├── AuthContext/
+│   │   │   ├── AuthContext.tsx
+│   │   │   ├── AuthProvider.tsx
+│   │   │   ├── authReducer.ts
+│   │   │   ├── authTypes.ts
+│   │   │   └── index.ts
+│   │   ├── ThemeContext/
+│   │   │   ├── ThemeContext.tsx
+│   │   │   ├── ThemeProvider.tsx
+│   │   │   ├── themeTypes.ts
+│   │   │   └── index.ts
+│   │   ├── ToastContext/
+│   │   │   ├── ToastContext.tsx
+│   │   │   ├── ToastProvider.tsx
+│   │   │   ├── toastTypes.ts
+│   │   │   └── index.ts
+│   │   ├── WebSocketContext/
+│   │   │   ├── WebSocketContext.tsx
+│   │   │   ├── WebSocketProvider.tsx
+│   │   │   ├── websocketTypes.ts
+│   │   │   └── index.ts
+│   │   ├── AppContext/
+│   │   │   ├── AppContext.tsx
+│   │   │   ├── AppProvider.tsx
+│   │   │   └── index.ts
+│   │   └── index.ts
+│   │
+│   ├── services/                       # API services and external integrations
+│   │   ├── api/
+│   │   │   ├── apiClient.ts           # Axios instance configuration
+│   │   │   ├── apiTypes.ts            # API request/response types
+│   │   │   ├── apiEndpoints.ts        # API endpoint constants
+│   │   │   └── index.ts
+│   │   ├── auth/
+│   │   │   ├── authService.ts         # Authentication API calls
+│   │   │   ├── tokenService.ts        # JWT token management
+│   │   │   └── index.ts
+│   │   ├── events/
+│   │   │   ├── eventsService.ts       # Events API calls
+│   │   │   ├── eventRegistrationService.ts
+│   │   │   ├── eventSearchService.ts
+│   │   │   └── index.ts
+│   │   ├── tickets/
+│   │   │   ├── ticketsService.ts      # Tickets API calls
+│   │   │   ├── pdfService.ts          # PDF generation service
+│   │   │   ├── qrCodeService.ts       # QR code generation
+│   │   │   └── index.ts
+│   │   ├── payment/
+│   │   │   ├── mockPaymentService.ts  # Mock payment gateway
+│   │   │   ├── paymentTypes.ts
+│   │   │   └── index.ts
+│   │   ├── upload/
+│   │   │   ├── fileUploadService.ts   # File upload service
+│   │   │   ├── imageService.ts        # Image processing
+│   │   │   └── index.ts
+│   │   ├── websocket/
+│   │   │   ├── websocketService.ts    # WebSocket connection management
+│   │   │   ├── notificationService.ts # Real-time notifications
+│   │   │   └── index.ts
+│   │   ├── analytics/
+│   │   │   ├── analyticsService.ts    # Analytics API calls
+│   │   │   ├── chartDataService.ts    # Chart data processing
+│   │   │   └── index.ts
+│   │   └── index.ts
+│   │
+│   ├── types/                          # TypeScript type definitions
+│   │   ├── auth.types.ts              # Authentication related types
+│   │   ├── user.types.ts              # User related types
+│   │   ├── event.types.ts             # Event related types
+│   │   ├── ticket.types.ts            # Ticket related types
+│   │   ├── payment.types.ts           # Payment related types
+│   │   ├── dashboard.types.ts         # Dashboard related types
+│   │   ├── api.types.ts               # API related types
+│   │   ├── form.types.ts              # Form related types
+│   │   ├── theme.types.ts             # Theme related types
+│   │   ├── notification.types.ts      # Notification related types
+│   │   ├── tailwind.types.ts          # Tailwind variant types
+│   │   ├── common.types.ts            # Common/shared types
+│   │   └── index.ts                   # Export all types
+│   │
+│   ├── utils/                          # Utility functions
+│   │   ├── auth/
+│   │   │   ├── tokenUtils.ts          # JWT token utilities
+│   │   │   ├── authUtils.ts           # Authentication utilities
+│   │   │   └── index.ts
+│   │   ├── api/
+│   │   │   ├── apiUtils.ts            # API utility functions
+│   │   │   ├── errorHandling.ts       # API error handling
+│   │   │   ├── requestInterceptors.ts # Request interceptors
+│   │   │   ├── responseInterceptors.ts # Response interceptors
+│   │   │   └── index.ts
+│   │   ├── validation/
+│   │   │   ├── formValidation.ts      # Form validation rules
+│   │   │   ├── inputValidation.ts     # Input validation utilities
+│   │   │   ├── eventValidation.ts     # Event-specific validations
+│   │   │   ├── userValidation.ts      # User-specific validations
+│   │   │   └── index.ts
+│   │   ├── formatting/
+│   │   │   ├── dateUtils.ts           # Date formatting utilities
+│   │   │   ├── currencyUtils.ts       # Currency formatting
+│   │   │   ├── stringUtils.ts         # String manipulation utilities
+│   │   │   ├── numberUtils.ts         # Number formatting utilities
+│   │   │   └── index.ts
+│   │   ├── storage/
+│   │   │   ├── localStorage.ts        # Local storage utilities
+│   │   │   ├── sessionStorage.ts      # Session storage utilities
+│   │   │   ├── cookieUtils.ts         # Cookie utilities
+│   │   │   └── index.ts
+│   │   ├── file/
+│   │   │   ├── fileUtils.ts           # File handling utilities
+│   │   │   ├── imageUtils.ts          # Image processing utilities
+│   │   │   ├── downloadUtils.ts       # File download utilities
+│   │   │   └── index.ts
+│   │   ├── pdf/
+│   │   │   ├── pdfGenerator.ts        # PDF generation utilities
+│   │   │   ├── ticketTemplate.ts      # Ticket PDF template
+│   │   │   └── index.ts
+│   │   ├── qrcode/
+│   │   │   ├── qrGenerator.ts         # QR code generation utilities
+│   │   │   ├── qrReader.ts            # QR code reading utilities
+│   │   │   └── index.ts
+│   │   ├── tailwind/                  # Tailwind-specific utilities
+│   │   │   ├── classNames.ts          # clsx/classnames utility wrapper
+│   │   │   ├── variants.ts            # Component variant utilities
+│   │   │   ├── responsive.ts          # Responsive utility functions
+│   │   │   ├── colors.ts              # Color manipulation utilities
+│   │   │   ├── spacing.ts             # Spacing calculation utilities
+│   │   │   ├── animation.ts           # Animation class utilities
+│   │   │   └── index.ts
+│   │   ├── constants/
+│   │   │   ├── appConstants.ts        # Application constants
+│   │   │   ├── apiConstants.ts        # API endpoint constants
+│   │   │   ├── routeConstants.ts      # Route constants
+│   │   │   ├── eventConstants.ts      # Event-related constants
+│   │   │   ├── themeConstants.ts      # Theme constants
+│   │   │   ├── tailwindConstants.ts   # Tailwind-related constants
+│   │   │   └── index.ts
+│   │   ├── helpers/
+│   │   │   ├── arrayHelpers.ts        # Array manipulation helpers
+│   │   │   ├── objectHelpers.ts       # Object manipulation helpers
+│   │   │   ├── urlHelpers.ts          # URL manipulation helpers
+│   │   │   ├── debounce.ts            # Debounce utility
+│   │   │   ├── throttle.ts            # Throttle utility
+│   │   │   └── index.ts
+│   │   ├── security/
+│   │   │   ├── sanitization.ts        # Input sanitization
+│   │   │   ├── encryption.ts          # Client-side encryption utilities
+│   │   │   ├── xssProtection.ts       # XSS protection utilities
+│   │   │   └── index.ts
+│   │   ├── performance/
+│   │   │   ├── lazyLoading.ts         # Lazy loading utilities
+│   │   │   ├── memoization.ts         # Memoization utilities
+│   │   │   ├── caching.ts             # Client-side caching
+│   │   │   └── index.ts
+│   │   └── index.ts                   # Export all utilities
+│   │
+│   ├── styles/                         # Tailwind CSS configuration and custom styles
+│   │   ├── globals.css                # Global styles with Tailwind directives
+│   │   ├── components.css             # Custom component styles
+│   │   ├── utilities.css              # Custom utility classes
+│   │   ├── base.css                   # Base layer customizations
+│   │   ├── animations.css             # Custom animations
+│   │   ├── fonts.css                  # Font face declarations
+│   │   └── themes/
+│   │       ├── light.css              # Light theme custom properties
+│   │       └── dark.css               # Dark theme custom properties
+│   │
+│   ├── assets/                         # Static assets
+│   │   ├── images/
+│   │   │   ├── logos/
+│   │   │   │   ├── logo.svg
+│   │   │   │   ├── logo-dark.svg
+│   │   │   │   ├── logo-light.svg
+│   │   │   │   ├── favicon.ico
+│   │   │   │   └── app-icons/
+│   │   │   │       ├── icon-192x192.png
+│   │   │   │       ├── icon-512x512.png
+│   │   │   │       └── apple-touch-icon.png
+│   │   │   ├── placeholders/
+│   │   │   │   ├── event-placeholder.webp
+│   │   │   │   ├── user-avatar-placeholder.svg
+│   │   │   │   ├── no-image-available.svg
+│   │   │   │   └── loading-placeholder.svg
+│   │   │   ├── backgrounds/
+│   │   │   │   ├── hero-bg.webp
+│   │   │   │   ├── auth-bg.webp
+│   │   │   │   ├── dashboard-bg.svg
+│   │   │   │   ├── pattern-bg.svg
+│   │   │   │   └── gradient-mesh.svg
+│   │   │   ├── icons/
+│   │   │   │   ├── event-categories/
+│   │   │   │   │   ├── music.svg
+│   │   │   │   │   ├── sports.svg
+│   │   │   │   │   ├── business.svg
+│   │   │   │   │   ├── technology.svg
+│   │   │   │   │   ├── education.svg
+│   │   │   │   │   └── entertainment.svg
+│   │   │   │   └── ui/
+│   │   │   │       ├── lucide-icons.ts    # Lucide icon exports
+│   │   │   │       └── custom-icons.svg   # Custom SVG icons
+│   │   │   └── illustrations/
+│   │   │       ├── empty-state.svg
+│   │   │       ├── no-events-found.svg
+│   │   │       ├── no-tickets.svg
+│   │   │       ├── server-error.svg
+│   │   │       ├── not-found.svg
+│   │   │       ├── success-celebration.svg
+│   │   │       └── maintenance.svg
+│   │   ├── fonts/
+│   │   │   ├── inter/
+│   │   │   │   ├── Inter-Variable.woff2
+│   │   │   │   └── inter.css
+│   │   │   └── poppins/
+│   │   │       ├── Poppins-Variable.woff2
+│   │   │       └── poppins.css
+│   │   ├── documents/
+│   │   │   ├── templates/
+│   │   │   │   ├── ticket-template.html
+│   │   │   │   ├── email-templates/
+│   │   │   │   │   ├── registration-confirmation.html
+│   │   │   │   │   ├── event-reminder.html
+│   │   │   │   │   ├── payment-confirmation.html
+│   │   │   │   │   └── welcome-email.html
+│   │   │   │   └── pdf-templates/
+│   │   │   │       ├── ticket-layout.json
+│   │   │   │       └── certificate-layout.json
+│   │   │   └── legal/
+│   │   │       ├── terms-of-service.md
+│   │   │       ├── privacy-policy.md
+│   │   │       └── cookie-policy.md
+│   │   └── data/
+│   │       ├── mock-data/
+│   │       │   ├── events.json
+│   │       │   ├── users.json
+│   │       │   ├── tickets.json
+│   │       │   ├── categories.json
+│   │       │   └── analytics.json
+│   │       ├── seed-data/
+│   │       │   ├── development-events.json
+│   │       │   └── test-users.json
+│   │       └── config/
+│   │           ├── app-config.json
+│   │           ├── feature-flags.json
+│   │           └── theme-config.json
+│   │
+│   ├── config/                         # Configuration files
+│   │   ├── api.config.ts              # API configuration
+│   │   ├── auth.config.ts             # Authentication configuration
+│   │   ├── app.config.ts              # Application configuration
+│   │   ├── theme.config.ts            # Theme configuration
+│   │   ├── routes.config.ts           # Routes configuration
+│   │   ├── websocket.config.ts        # WebSocket configuration
+│   │   ├── tailwind.config.ts         # Tailwind theme extensions
+│   │   ├── constants.ts               # Application constants
+│   │   ├── environment.ts             # Environment variables
+│   │   └── index.ts
+│   │
+│   ├── lib/                            # Third-party library configurations
+│   │   ├── pdf/
+│   │   │   ├── jspdf.config.ts        # jsPDF configuration
+│   │   │   └── pdf-lib.config.ts      # PDF-lib configuration
+│   │   ├── qrcode/
+│   │   │   ├── qrcode.config.ts       # QR code library configuration
+│   │   │   └── qr-scanner.config.ts   # QR scanner configuration
+│   │   ├── charts/
+│   │   │   ├── chart.config.ts        # Chart.js configuration
+│   │   │   └── recharts.config.ts     # Recharts configuration
+│   │   ├── websocket/
+│   │   │   └── socket.config.ts       # Socket.io configuration
+│   │   ├── ui/
+│   │   │   ├── class-variance-authority.config.ts # CVA configuration
+│   │   │   ├── clsx.config.ts         # clsx configuration
+│   │   │   └── tailwind-merge.config.ts # tailwind-merge configuration
+│   │   └── index.ts
+│   │
+│   ├── store/                          # State management (if using Redux)
+│   │   ├── slices/                    # Redux Toolkit slices
+│   │   │   ├── authSlice.ts
+│   │   │   ├── eventsSlice.ts
+│   │   │   ├── ticketsSlice.ts
+│   │   │   ├── uiSlice.ts
+│   │   │   ├── themeSlice.ts
+│   │   │   └── index.ts
+│   │   ├── middleware/
+│   │   │   ├── authMiddleware.ts
+│   │   │   ├── apiMiddleware.ts
+│   │   │   └── index.ts
+│   │   ├── store.ts                   # Store configuration
+│   │   ├── rootReducer.ts             # Root reducer
+│   │   └── index.ts
+│   │
+│   ├── workers/                        # Web Workers
+│   │   ├── pdfWorker.ts               # PDF generation worker
+│   │   ├── imageProcessingWorker.ts   # Image processing worker
+│   │   ├── dataProcessingWorker.ts    # Heavy data processing worker
+│   │   └── index.ts
+│   │
+│   ├── tests/                          # Test files
+│   │   ├── __mocks__/                 # Mock files
+│   │   │   ├── fileMock.js
+│   │   │   ├── styleMock.js
+│   │   │   ├── apiMock.ts
+│   │   │   ├── tailwindMock.ts
+│   │   │   └── localStorageMock.ts
+│   │   ├── utils/                     # Test utilities
+│   │   │   ├── testUtils.tsx          # Testing utilities with Tailwind
+│   │   │   ├── mockData.ts            # Mock data for tests
+│   │   │   ├── renderWithProviders.tsx # Render with context providers
+│   │   │   ├── tailwindTestUtils.ts   # Tailwind testing utilities
+│   │   │   └── index.ts
+│   │   ├── components/                # Component tests
+│   │   │   ├── common/
+│   │   │   │   ├── Button.test.tsx
+│   │   │   │   ├── Modal.test.tsx
+│   │   │   │   ├── Input.test.tsx
+│   │   │   │   └── Card.test.tsx
+│   │   │   ├── auth/
+│   │   │   │   ├── LoginForm.test.tsx
+│   │   │   │   ├── RegisterForm.test.tsx
+│   │   │   │   └── ProtectedRoute.test.tsx
+│   │   │   ├── events/
+│   │   │   │   ├── EventCard.test.tsx
+│   │   │   │   ├── EventList.test.tsx
+│   │   │   │   └── EventForm.test.tsx
+│   │   │   └── layout/
+│   │   │       ├── Header.test.tsx
+│   │   │       ├── Footer.test.tsx
+│   │   │       └── Sidebar.test.tsx
+│   │   ├── pages/
+│   │   │   ├── HomePage.test.tsx
+│   │   │   ├── EventsPage.test.tsx
+│   │   │   ├── LoginPage.test.tsx
+│   │   │   └── DashboardPage.test.tsx
+│   │   ├── hooks/
+│   │   │   ├── useAuth.test.ts
+│   │   │   ├── useEvents.test.ts
+│   │   │   ├── useTheme.test.ts
+│   │   │   ├── useDebounce.test.ts
+│   │   │   └── useLocalStorage.test.ts
+│   │   ├── services/
+│   │   │   ├── authService.test.ts
+│   │   │   ├── eventsService.test.ts
+│   │   │   └── apiClient.test.ts
+│   │   ├── utils/
+│   │   │   ├── dateUtils.test.ts
+│   │   │   ├── formValidation.test.ts
+│   │   │   ├── tokenUtils.test.ts
+│   │   │   ├── tailwindUtils.test.ts
+│   │   │   └── fileUtils.test.ts
+│   │   ├── context/
+│   │   │   ├── AuthContext.test.tsx
+│   │   │   ├── ThemeContext.test.tsx
+│   │   │   └── ToastContext.test.tsx
+│   │   └── integration/
+│   │       ├── authFlow.test.tsx
+│   │       ├── eventRegistration.test.tsx
+│   │       ├── ticketGeneration.test.tsx
+│   │       ├── themeToggling.test.tsx
+│   │       └── paymentFlow.test.tsx
+│   │
+│   ├── App.tsx                         # Main App component
+│   ├── App.test.tsx                    # App component tests
+│   ├── index.tsx                       # Application entry point
+│   ├── reportWebVitals.ts             # Performance measurement
+│   ├── setupTests.ts                  # Test setup configuration
+│   └── react-app-env.d.ts             # React app type declarations
+│
+├── tailwind.config.js                 # Tailwind CSS configuration
+├── postcss.config.js                  # PostCSS configuration
+├── .env                               # Environment variables (development)
+├── .env.local                         # Local environment variables
+├── .env.development                   # Development environment variables
+├── .env.production                    # Production environment variables
+├── .env.test                          # Test environment variables
+├── .gitignore                         # Git ignore file
+├── .gitattributes                     # Git attributes
+├── .editorconfig                      # Editor configuration
+├── .prettierrc                        # Prettier configuration
+├── .prettierignore                    # Prettier ignore file
+├── .eslintrc.json                     # ESLint configuration
+├── .eslintignore                      # ESLint ignore file
+├── tsconfig.json                      # TypeScript configuration
+├── tsconfig.paths.json                # TypeScript path mapping
+├── package.json                       # Package dependencies and scripts
+├── package-lock.json                  # Lockfile for dependencies
+├── yarn.lock                          # Yarn lockfile (if using Yarn)
+├── craco.config.js                    # CRACO configuration (if needed)
+├── jest.config.js                     # Jest testing configuration
+├── cypress.config.js                  # Cypress E2E testing configuration
+├── README.md                          # Project documentation
+├── CONTRIBUTING.md                    # Contributing guidelines
+├── CHANGELOG.md                       # Project changelog
+├── LICENSE                            # Project license
+├── docker-compose.yml                 # Docker compose for development
+├── Dockerfile                         # Docker configuration
+├── .dockerignore                      # Docker ignore file
+├── nginx.conf                         # Nginx configuration for production
+├── deployment/                        # Deployment configurations
+│   ├── k8s/                          # Kubernetes configurations
+│   │   ├── deployment.yaml
+│   │   ├── service.yaml
+│   │   ├── ingress.yaml
+│   │   └── configmap.yaml
+│   ├── docker/
+│   │   ├── Dockerfile.dev
+│   │   ├── Dockerfile.prod
+│   │   └── docker-compose.prod.yml
+│   └── scripts/
+│       ├── build.sh
+│       ├── deploy.sh
+│       ├── test.sh
+│       └── start.sh
+├── docs/                              # Project documentation
+│   ├── api/                          # API documentation
+│   │   ├── authentication.md
+│   │   ├── events.md
+│   │   ├── tickets.md
+│   │   └── payments.md
+│   ├── components/                   # Component documentation
+│   │   ├── component-library.md
+│   │   ├── style-guide.md
+│   │   ├── design-system.md
+│   │   └── tailwind-customizations.md
+│   ├── deployment/
+│   │   ├── deployment-guide.md
+│   │   ├── environment-setup.md
+│   │   └── troubleshooting.md
+│   ├── development/
+│   │   ├── getting-started.md
+│   │   ├── coding-standards.md
+│   │   ├── testing-guidelines.md
+│   │   ├── tailwind-guidelines.md
+│   │   └── performance-guidelines.md
+│   ├── user-guides/
+│   │   ├── user-manual.md
+│   │   ├── organizer-guide.md
+│   │   └── admin-guide.md
+│   └── architecture/
+│       ├── system-architecture.md
+│       ├── data-flow.md
+│       ├── security-considerations.md
+│       ├── ui-architecture.md
+│       └── performance-considerations.md
+└── scripts/                           # Build and utility scripts
+    ├── build/
+    │   ├── build-prod.sh
+    │   ├── build-dev.sh
+    │   ├── analyze-bundle.sh
+    │   └── optimize-tailwind.sh       # Tailwind optimization script
+    ├── test/
+    │   ├── test-unit.sh
+    │   ├── test-integration.sh
+    │   ├── test-e2e.sh
+    │   ├── test-coverage.sh
+    │   └── test-accessibility.sh      # A11y testing script
+    ├── deploy/
+    │   ├── deploy-staging.sh
+    │   ├── deploy-production.sh
+    │   └── rollback.sh
+    ├── dev/
+    │   ├── start-dev.sh
+    │   ├── reset-db.sh
+    │   ├── seed-data.sh
+    │   ├── generate-types.sh
+    │   └── watch-tailwind.sh          # Tailwind watch mode
+    └── utils/
+        ├── clean.sh
+        ├── update-deps.sh
+        ├── security-audit.sh
+        ├── performance-audit.sh
+        ├── purge-css.sh               # CSS purging utility
+        └── optimize-images.sh         # Image optimization
+
+
+
+
+mkdir -p src/components/common && cd src/components/common
+
+# Button
+mkdir -p Button && touch Button/Button.tsx Button/Button.variants.ts Button/index.ts
+
+# Modal
+mkdir -p Modal && touch Modal/Modal.tsx Modal/ModalOverlay.tsx Modal/ModalContent.tsx Modal/index.ts
+
+# Input
+mkdir -p Input && touch Input/Input.tsx Input/TextArea.tsx Input/Select.tsx Input/FileUpload.tsx Input/InputField.tsx Input/index.ts
+
+# Card
+mkdir -p Card && touch Card/Card.tsx Card/CardHeader.tsx Card/CardContent.tsx Card/CardFooter.tsx Card/index.ts
+
+# Loading
+mkdir -p Loading && touch Loading/Spinner.tsx Loading/LoadingPage.tsx Loading/Skeleton.tsx Loading/LoadingDots.tsx Loading/index.ts
+
+# Pagination
+mkdir -p Pagination && touch Pagination/Pagination.tsx Pagination/PaginationButton.tsx Pagination/index.ts
+
+# Toast
+mkdir -p Toast && touch Toast/Toast.tsx Toast/ToastContainer.tsx Toast/ToastProvider.tsx Toast/index.ts
+
+# SearchBar
+mkdir -p SearchBar && touch SearchBar/SearchBar.tsx SearchBar/SearchSuggestions.tsx SearchBar/index.ts
+
+# Filter
+mkdir -p Filter && touch Filter/FilterDropdown.tsx Filter/DateRangePicker.tsx Filter/PriceRangeSlider.tsx Filter/MultiSelect.tsx Filter/index.ts
+
+# Badge
+mkdir -p Badge && touch Badge/Badge.tsx Badge/StatusBadge.tsx Badge/index.ts
+
+# Avatar
+mkdir -p Avatar && touch Avatar/Avatar.tsx Avatar/AvatarGroup.tsx Avatar/index.ts
+
+# Dropdown
+mkdir -p Dropdown && touch Dropdown/Dropdown.tsx Dropdown/DropdownItem.tsx Dropdown/DropdownDivider.tsx Dropdown/index.ts
+
+# Tooltip
+mkdir -p Tooltip && touch Tooltip/Tooltip.tsx Tooltip/index.ts
+
+# ErrorBoundary
+mkdir -p ErrorBoundary && touch ErrorBoundary/ErrorBoundary.tsx ErrorBoundary/ErrorFallback.tsx ErrorBoundary/index.ts
+
+# Common index
+touch index.ts
