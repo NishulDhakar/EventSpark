@@ -1,13 +1,11 @@
 import './App.css'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-
-
-// Auth Pages
 import { LoginPage, RegisterPage } from "./pages/auth";
 
 import NotFoundPage from './pages/error/NotFoundPage/NotFoundPage'
 import { HomePage } from './pages/public';
 import AboutPage from './pages/public/AboutPage/AboutPage';
+import ContactPage from './pages/public/ContactPage/ContactPage';
 
 function App() {
   return (
@@ -18,6 +16,7 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="about" element={<AboutPage />} />
+        <Route path="contact" element={<ContactPage />} />
         {/* <Route path="/forgot-password" element={<ForgotPasswordPage />} />
         <Route path="/reset-password" element={<ResetPasswordPage />} />
 

@@ -1,7 +1,12 @@
 import { Card } from "../../../components/common/Card"
 import card1 from '../../../assets/card1.png';
+import { Button } from "../../../components/common/Button";
+import { IoChevronDown } from "react-icons/io5";
+import { ToggleButton } from "../../../components/common/Button/ToggleButton";
 
 const FeaturedEvents = () => {
+
+    
 
       const handleJoin = () => {
     console.log('Joining the class!');
@@ -16,15 +21,26 @@ const FeaturedEvents = () => {
 
        <div className="flex justify-between  mt-10">
         <div className="flex gap-4 ">
-        <button className="bg-blue-500 text-white px-4 py-2 rounded">View All</button>
-        <button className="bg-blue-500 text-white px-4 py-2 rounded">View All</button>
-        <button className="bg-blue-500 text-white px-4 py-2 rounded">View All</button>
-        <button className="bg-blue-500 text-white px-4 py-2 rounded">View All</button>
+        <Button variant="outline" className="flex gap-2">
+         <span>Date</span>  <span className="text-lg mt-1"><IoChevronDown /></span>
+        </Button>
+                <Button variant="outline" className="flex gap-2">
+         <span>Any Type</span>  <span className="text-lg mt-1"><IoChevronDown /></span>
+        </Button>
+                <Button variant="outline" className="flex gap-2">
+         <span>Any Distance</span>  <span className="text-lg mt-1"><IoChevronDown /></span>
+        </Button>
+                <Button variant="outline" className="flex gap-2">
+         <span>Category</span>  <span className="text-lg mt-1"><IoChevronDown /></span>
+        </Button>
+
 
         </div>
-        <div>
-            Suggested 
-                <button className="bg-blue-500 text-white px-4 py-2 rounded ml-4">View All</button>
+
+        <div className="flex gap-4 text-xl">
+         <span> Suggested 
+            </span>    
+                <ToggleButton />
             
         </div>
        </div>

@@ -1,10 +1,12 @@
+import { Button } from "../../common/Button";
+
 const Header = () => {
   return (
-    <div className="flex justify-between items-center p-4 border-b">
-      <div>Logo</div>
+    <div className="flex justify-between items-center p-4 ">
+      
+      <div> <span></span> <span className="text-3xl font-bold">EventSpark</span></div>
       <div>
         <ul className=" text-xl flex gap-8">
-          <li>Home</li>
           <li>Home</li>
           <a href="/contact">
             <li>Contact</li>
@@ -16,15 +18,15 @@ const Header = () => {
       </div>
       <div className="flex gap-4">
         <a href="/login">
-          <button className="bg-blue-500 text-white px-4 py-2 rounded">
+          <Button variant="outline">
             Login
-          </button>
+          </Button>
         </a>
 
         <a href="/register">
-          <button className="bg-blue-500 text-white px-4 py-2 rounded">
-            Register
-          </button>
+            <Button variant="outline">
+              Register
+          </Button>
         </a>
       </div>
     </div>
