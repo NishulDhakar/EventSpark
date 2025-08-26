@@ -6,7 +6,7 @@ interface CardHeaderProps {
 
 export const CardHeader: React.FC<CardHeaderProps> = ({ imageUrl }) => {
   return (
-    <div className="relative h-64 w-full">
+    <div className="relative w-full">
       <img
         src={imageUrl}
         alt="Event"

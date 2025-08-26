@@ -2,23 +2,34 @@ import React from 'react';
 
 interface FooterSection {
   title: string;
-  links: string[];
+  links: { text: string; url: string }[];
 }
 
 const footerSections: FooterSection[] = [
   {
     title: "Your Account",
-    links: ["Sign up", "Log in", "Help"]
+    links: [
+      { text: "Register", url: "/register" },
+      { text: "Log in", url: "/login" },
+      { text: "Help", url: "#" },
+    ],
   },
   {
     title: "Discover",
-    links: ["Topics", "Cities", "Online Events"]
+    links: [
+      { text: "Topics", url: "#" }, 
+      { text: "Cities", url: "#" },
+      { text: "Online Events", url: "#" }, 
+    ],
   },
   {
     title: "Events",
-    links: ["About", "Blog", "Contact"]
+    links: [
+      { text: "About", url: "#" }, 
+      { text: "Blog", url: "#" }, 
+      { text: "Contact", url: "#" }, 
+    ],
   },
-
 ];
 
 export const FooterLinks: React.FC = () => {
@@ -35,10 +46,9 @@ export const FooterLinks: React.FC = () => {
                 {section.links.map((link, linkIndex) => (
                   <li key={linkIndex}>
                     <a
-                      href="#"
-                      className="text-sm text-gray-400 hover:text-white transition-colors"
-                    >
-                      {link}
+                      href={link.url}
+                      className="text-sm text-gray-400 hover:text-white transition-colors">
+                      {link.text}
                     </a>
                   </li>
                 ))}

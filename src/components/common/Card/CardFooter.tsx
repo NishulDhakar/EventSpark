@@ -1,4 +1,5 @@
 import React from 'react';
+import { Button } from '../Button';
 
 interface CardFooterProps {
   onJoin?: () => void;
@@ -7,12 +8,14 @@ interface CardFooterProps {
 export const CardFooter: React.FC<CardFooterProps> = ({ onJoin }) => {
   return (
     <div className="px-6 pb-6">
-      <button
+      <Button
         onClick={onJoin}
-        className="w-full bg-blue-500  text-white font-medium py-3 px-4 rounded-lg hover:from-purple-600 hover:to-pink-600 transition-colors duration-200"
+        type="button"
+        variant='outline'
+        className="w-full"
       >
-        Join
-      </button>
+        Book
+      </Button>
     </div>
   );
 };

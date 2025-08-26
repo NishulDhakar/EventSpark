@@ -31,7 +31,7 @@ export const Button: React.FC<ButtonProps> = ({
     success: 'bg-green-600 text-white hover:bg-green-700 focus:ring-green-500 disabled:bg-green-300',
     danger: 'bg-red-600 text-white hover:bg-red-700 focus:ring-red-500 disabled:bg-red-300',
     warning: 'bg-yellow-500 text-white hover:bg-yellow-600 focus:ring-yellow-500 disabled:bg-yellow-300',
-    outline: 'border border-gray-600 text-gray-600 hover:bg-gray-600 hover:text-white focus:ring-blue-500 disabled:border-blue-300 disabled:text-blue-300',
+    outline: 'border border-gray-600 text-gray-600 hover:bg-gray-600 hover:text-white focus:ring-gray-500 disabled:border-blue-300 disabled:text-blue-300',
     ghost: 'text-blue-600 hover:bg-blue-50 focus:ring-blue-500 disabled:text-blue-300',
     gradient: 'bg-gradient-to-r from-purple-600 to-pink-600 text-white hover:from-purple-700 hover:to-pink-700 focus:ring-purple-500 disabled:from-purple-300 disabled:to-pink-300',
   };

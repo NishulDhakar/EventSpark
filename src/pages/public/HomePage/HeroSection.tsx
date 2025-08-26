@@ -2,7 +2,6 @@ import { useCallback, useEffect, useState } from "react";
 import Event1 from "../../../assets/Event1.jpeg";
 import Event2 from "../../../assets/Event2.jpeg";
 import Event3 from "../../../assets/Event3.jpeg";
-import Event4 from "../../../assets/Event4.jpeg";
 import Event5 from "../../../assets/Event5.jpeg";
 
 const eventList = [
@@ -29,7 +28,7 @@ const locationList = [
 ];
 
 export const HeroSection = () => {
-  const backgroundImages = [Event1 , Event2, Event3, Event4, Event5];
+  const backgroundImages = [Event1 , Event2, Event3, Event5];
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [searchEvent, setSearchEvent] = useState("");
@@ -124,7 +123,7 @@ export const HeroSection = () => {
             </div>
 
             {showEventSuggestions && filteredEvents.length > 0 && (
-              <ul className="absolute top-12 left-0 w-full bg-white shadow-md rounded-lg max-h-40 overflow-y-auto z-20">
+              <ul className="absolute top-12 left-0 w-full bg-white shadow-md rounded-lg max-h-30 overflow-y-auto z-20">
                 {filteredEvents.map((event, idx) => (
                   <li
                     key={idx}
@@ -180,7 +179,7 @@ export const HeroSection = () => {
             </div>
 
             {showLocationSuggestions && filteredLocations.length > 0 && (
-              <ul className="absolute top-12 left-0 w-full bg-white shadow-md rounded-lg max-h-40 overflow-y-auto z-20">
+              <ul className="absolute top-12  left-0 w-full bg-white shadow-md rounded-lg max-h-30 overflow-y-auto z-20">
                 {filteredLocations.map((loc, idx) => (
                   <li
                     key={idx}

@@ -23,7 +23,7 @@ export const Card: React.FC<CardProps> = ({
   onJoin
 }) => {
   return (
-    <div className="max-w-sm bg-white rounded-xl shadow-lg overflow-hidden">
+    <div className="max-w-md bg-white rounded-xl shadow-lg overflow-hidden">
       <CardHeader imageUrl={imageUrl} />
       <CardContent 
         title={title}
